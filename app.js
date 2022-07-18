@@ -6,7 +6,7 @@ const {
   postCar,
   deleteCar,
 } = require('./controllers/cars.controllers');
-const getApi = require('./controllers/api.controllers');
+const { getApi } = require('./controllers/api.controllers');
 
 const app = express();
 app.use(express.json());
