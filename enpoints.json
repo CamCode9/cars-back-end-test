@@ -1,0 +1,41 @@
+{
+    "GET /cars": {
+        "description": "returns all cars",
+        "example response": {
+            "cars": [
+                {"car_id":1,"make":"Seat","model":"Ibiza","build_date":"2020-01-01T00:00:00.000Z","colour_id":1},
+                {"car_id":2,"make":"Aston Martin","model":"DB9","build_date":"2021-01-01T00:00:00.000Z","colour_id":2}
+            ]
+        }
+    },
+
+    "GET /cars/:car_id": {
+        "description": "returns single car object based on id",
+        "example response": {
+            "car": [
+                {"car_id":1,"make":"Seat","model":"Ibiza","build_date":"2020-01-01T00:00:00.000Z","colour_id":1}
+            ]
+        }
+    },
+
+    "POST /cars": {
+        "description": "posts single valid car object",
+        "example request": {
+            "make": "Fiat",
+            "model": "500",
+            "build_date": "2019-06-06",
+            "colour_id": 4
+        },
+        "example response": {
+            "car_id": 5,
+            "make": "Fiat",
+            "model": "500",
+            "build_date": "2019-06-06T00:00:00.000Z",
+            "colour_id": 4
+        }
+    },
+
+    "DELETE /cars/:car_id": {
+        "description": "deletes valid car by id and responds with 204"
+    }
+}

@@ -37,3 +37,5 @@ Run the following scripts in order:
 The databases should now be setup, you can run the test files by running the following script:
 
 - npm test
+
+The 'production' version of the test is currently hosted [here](https://cars-be-test.herokuapp.com/) on Heroku.

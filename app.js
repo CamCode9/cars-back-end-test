@@ -6,13 +6,12 @@ const {
   postCar,
   deleteCar,
 } = require('./controllers/cars.controllers');
+const getApi = require('./controllers/api.controllers');
 
 const app = express();
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.get('/', getApi);
 
 app.get('/cars', getCars);
 app.get('/cars/:car_id', getCarById);
