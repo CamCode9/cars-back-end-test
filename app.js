@@ -52,8 +52,4 @@ app.use((err, req, res, next) => {
   res.status(500).send({ msg: 'Internal server error' });
 });
 
-app.listen(9090, () => {
-  console.log(`Server is listening on port 9090...`);
-});
-
 module.exports = app;

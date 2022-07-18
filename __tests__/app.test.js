@@ -5,7 +5,7 @@ const seed = require('../db/seeds/seed');
 const { colourData, carData } = require('../db/data/test-data');
 
 afterAll(() => {
-  db.end();
+  return db.end();
 });
 beforeEach(() => {
   return seed(colourData, carData);
