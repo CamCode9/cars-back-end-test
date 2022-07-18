@@ -38,4 +38,4 @@ The databases should now be setup, you can run the test files by running the fol
 
 - npm test
 
-The 'production' version of the test is currently hosted [here](https://cars-be-test.herokuapp.com/) on Heroku.
+The 'production' version of the test is currently hosted [here](https://cars-be-test.herokuapp.com/) on Heroku. The index screen displays all available endpoints.
