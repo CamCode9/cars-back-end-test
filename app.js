@@ -4,6 +4,7 @@ const {
   getCars,
   getCarById,
   postCar,
+  deleteCar,
 } = require('./controllers/cars.controllers');
 
 const app = express();
@@ -17,6 +18,8 @@ app.get('/cars', getCars);
 app.get('/cars/:car_id', getCarById);
 
 app.post('/cars', postCar);
+
+app.delete('/cars/:car_id', deleteCar);
 
 /////////////////////////ERRORS BELOW/////////////////////////////
 
@@ -33,7 +36,6 @@ app.use((err, req, res, next) => {
 // handle custom err
 app.use((err, req, res, next) => {
   if (err.status) {
-    console.log(err.status);
     res.status(err.status).send({ msg: err.msg });
   } else {
     next(err);
@@ -47,7 +49,6 @@ app.all('/*', (req, res, next) => {
 
 // handle unexpected errors
 app.use((err, req, res, next) => {
-  console.log(err.status);
   res.status(500).send({ msg: 'Internal server error' });
 });
 

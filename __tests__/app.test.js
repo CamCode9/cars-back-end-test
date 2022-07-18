@@ -101,27 +101,52 @@ describe('POST /cars', () => {
   test('400: Invalid body data type - model', async () => {
     const result = await request(app)
       .post('/cars')
-      .send([
-        {
-          make: 'Fiat',
-          model: 500,
-          build_date: '2019-06-06',
-          colour_id: 4,
-        },
-      ])
+      .send({
+        make: 'Fiat',
+        model: 500,
+        build_date: '2019-06-06',
+        colour_id: 4,
+      })
       .expect(400);
   });
-  test('400: Invalid body data type - date', async () => {
+  test('400: Invalid body data type - psql', async () => {
     const result = await request(app)
       .post('/cars')
-      .send([
-        {
-          make: 'Fiat',
-          model: '500',
-          build_date: '2019-06',
-          colour_id: 4,
-        },
-      ])
+      .send({
+        make: 'Fiat',
+        model: '500',
+        build_date: '2019-06',
+        colour_id: 4,
+      })
       .expect(400);
+  });
+  test('400: Car is older than 4 years', async () => {
+    const result = await request(app)
+      .post('/cars')
+      .send({
+        make: 'Fiat',
+        model: '500',
+        build_date: '2017-06-06',
+        colour_id: 4,
+      })
+      .expect(400);
+  });
+});
+
+describe('DELETE /cars', () => {
+  test('204: response with no content - successful car delete', async () => {
+    const result = await request(app).delete('/cars/1').expect(204);
+  });
+  test('404: response with no content - successful delete', async () => {
+    const result = await request(app).delete('/cars/9999').expect(404);
+    expect(result.body.msg).toBe('Car not found');
+  });
+  test('400: bad request for missing id', async () => {
+    const result = await request(app).delete('/cars/').expect(400);
+    expect(result.body.msg).toBe('Bad request');
+  });
+  test('400: bad request for invalid id', async () => {
+    const result = await request(app).delete('/cars/notANumber').expect(400);
+    expect(result.body.msg).toBe('Bad request');
   });
 });

@@ -2,7 +2,11 @@ const {
   selectAllCars,
   selectCarById,
   addCar,
+  deleteCarById,
 } = require('../models/cars.models');
+
+const { checkExists } = require('../helpers/checkExists');
+const { checkAge } = require('../helpers/checkAge');
 
 exports.getCars = async (req, res, next) => {
   try {
@@ -26,9 +30,27 @@ exports.getCarById = async (req, res, next) => {
 exports.postCar = async (req, res, next) => {
   try {
     const body = req.body;
-    const result = await addCar(body);
+    const build_date = body.build_date;
 
-    res.status(201).send({ new_car: result });
+    const validAge = await checkAge(build_date);
+    if (validAge) {
+      const result = await addCar(body);
+      res.status(201).send({ new_car: result });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deleteCar = async (req, res, next) => {
+  try {
+    const { car_id } = req.params;
+    const carExists = await checkExists(car_id);
+
+    if (carExists) {
+      const result = await deleteCarById(car_id);
+      res.status(204).send();
+    }
   } catch (err) {
     next(err);
   }

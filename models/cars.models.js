@@ -38,3 +38,8 @@ exports.addCar = async (body) => {
     return Promise.reject({ status: 400, msg: 'Invalid data type' });
   }
 };
+
+exports.deleteCarById = async (car_id) => {
+  const carDeleteQuery = `DELETE FROM cars WHERE car_id = $1;`;
+  const result = await db.query(carDeleteQuery, [car_id]);
+};
