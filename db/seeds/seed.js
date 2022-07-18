@@ -11,7 +11,7 @@ const seed = async (colourData, carData) => {
     colourData.map(({ name }) => [name])
   );
 
-  await db.query(coloursInsert).then((result) => console.log(result.rows));
+  await db.query(coloursInsert);
 
   const carsInsert = format(
     'INSERT INTO cars (make, model, build_date, colour_id) VALUES %L RETURNING *;',
@@ -23,7 +23,7 @@ const seed = async (colourData, carData) => {
     ])
   );
 
-  await db.query(carsInsert).then((result) => console.log(result.rows));
+  await db.query(carsInsert);
 };
 
 module.exports = seed;

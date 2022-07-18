@@ -13,6 +13,12 @@ const carData = [
     build_date: '2021-01-01',
     colour_id: 2,
   },
+  {
+    make: 'Ferrari',
+    model: 'Enzo',
+    build_date: '2021-05-07',
+    colour_id: 3,
+  },
 ];
 
 module.exports = { colourData, carData };
