@@ -1,21 +1,39 @@
-# cars-back-end-test
+# Cars-back-end-test
 
-## Setup express
+## Description
 
-npm install jest
-npm install express
-npm i supertest -D
-node app.js to run express server ('Server listening on port 9090 should appear in console)
+Simple API back-end using mock data to simulate a car database
 
-## Setup PSQL
+## Setup and prerequisites
 
-INSTRUCTIONS FROM NC NOTES HERE
+Prerequisite: [Node](https://nodejs.org/en/) (version 16 or above) and [PostgreSQL](https://www.postgresql.org/) (version 12 or above)
 
-npm install pg
-npm install pg-format
-npm install dotenv
+To begin, run **npm install** to install the packages required. If for any reason this is unsuccessful, try installing the following packages individually:
+
+- npm install express
+- npm install jest
+- npm install supertest -D
+- npm install pg
+- npm install pg-format
+- npm install dotenv
+
+### dotenv
+
+This repo contains 2 databases for test and (hypothetical) dev data. In order to connect to the databases, .env files must be created. In the root directory, create a .env.test file, and include the following:
+
+PGDATABASE=cars_db_test
+
+Next, create a .env.development file, and include the following:
+
+PGDATABASE=cars_db
 
 ## To start
 
-create .env file
-npm run setup
+Run the following scripts in order:
+
+- npm run setup
+- npm run seed
+
+The databases should now be setup, you can run the test files by running the following script:
+
+- npm test
