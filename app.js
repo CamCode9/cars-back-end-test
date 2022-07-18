@@ -1,6 +1,10 @@
 const express = require('express');
 const db = require('./db/index');
-const { getCars } = require('./controllers/cars.controllers');
+const {
+  getCars,
+  getCarById,
+  postCar,
+} = require('./controllers/cars.controllers');
 
 const app = express();
 app.use(express.json());
@@ -10,6 +14,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cars', getCars);
+app.get('/cars/:car_id', getCarById);
+
+app.post('/cars', postCar);
 
 /////////////////////////ERRORS BELOW/////////////////////////////
 
@@ -26,6 +33,7 @@ app.use((err, req, res, next) => {
 // handle custom err
 app.use((err, req, res, next) => {
   if (err.status) {
+    console.log(err.status);
     res.status(err.status).send({ msg: err.msg });
   } else {
     next(err);
@@ -39,7 +47,7 @@ app.all('/*', (req, res, next) => {
 
 // handle unexpected errors
 app.use((err, req, res, next) => {
-  console.log(err, '<< UNEXPECTED ERROR');
+  console.log(err.status);
   res.status(500).send({ msg: 'Internal server error' });
 });
 
