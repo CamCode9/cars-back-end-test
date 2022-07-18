@@ -4,7 +4,9 @@
   "description": "drivvn-back-end-test",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "setup": "psql -f ./db/setup.sql",
+    "seed": "node ./db/seeds/run-seed.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
     "express": "^4.18.1",
     "jest": "^28.1.3",
     "pg": "^8.7.3",
+    "pg-format": "^1.0.4",
     "postgres": "^3.2.4"
   }
 }
